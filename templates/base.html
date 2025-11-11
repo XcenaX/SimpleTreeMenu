@@ -1,0 +1,40 @@
+{% load draw_menu %}
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Демо меню</title>
+    <style>
+      body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial; padding: 24px; }
+      .wrap { display: grid; grid-template-columns: 260px 1fr; gap: 32px; align-items: start; }
+      .menu { list-style: none; padding-left: 0; margin: 0; }
+      .menu > li { margin: 4px 0; }
+      .menu li a { text-decoration: none; }
+      .menu li.is-active > a { font-weight: 700; text-decoration: underline; }
+      .menu__children { margin-left: 16px; padding-left: 12px; border-left: 1px solid #ddd; }
+      .hint { color:#666; font-size: 14px; margin-top: 6px; }
+    </style>
+  </head>
+  <body>
+    <h1>Пример страницы</h1> 
+
+    <div class="wrap">
+      <aside>
+        <h3>Главное меню</h3>
+        {% draw_menu 'main' %}
+
+        {% if menu_name %}
+          <h3 style="margin-top:24px">Доп. меню: {{ menu_name|default:"(не задано)" }}</h3>        
+          {% draw_menu menu_name %}
+        {% endif %}
+
+        <h3 style="margin-top:24px">Footer-меню</h3>
+        {% draw_menu 'footer' %}
+      </aside>
+
+      <main>
+        <p>Пункты меню добавляются в админке: <code>Меню</code> и <code>Пункты меню</code>.</p>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+
+{% for n in nodes %}
+  <li class="{% if n.id == active_id %}is-active{% endif %}">
+    <a href="{{ n.url }}">{{ n.title }}</a>
+    {% if n.children %}
+      <ul class="menu__children">
+        {% include "menus/_nodes.html" with nodes=n.children active_id=active_id %}
+      </ul>
+    {% endif %}
+  </li>
+{% endfor %}
